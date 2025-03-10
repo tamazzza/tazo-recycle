@@ -114,7 +114,7 @@ function triggerNotify(title, message, type, src)
 	end
 end
 
-function toggleItem(give, item, amount) TriggerServerEvent("jim-recycle:server:toggleItem", give, item, amount) end
+function toggleItem(give, item, amount) TriggerServerEvent("tazo-recycle:server:toggleItem", give, item, amount) end
 
 function lockInv(toggle)
 	if toggle then LocalPlayer.state:set("inv_busy", true, true) TriggerEvent('inventory:client:busy:status', true) TriggerEvent('canUseInventoryAndHotbar:toggle', false)

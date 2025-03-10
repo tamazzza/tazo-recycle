@@ -4,7 +4,7 @@ if Config.DumpsterDiving.Enable then if Config.Debug then print("^5Debug^7: ^2Lo
     exports['qb-target']:AddTargetModel(Config.DumpsterDiving.models,
         { options = {
             {
-                action = function(entity) TriggerEvent("jim-recycle:Dumpsters:Search", { entity = entity }) end,
+                action = function(entity) TriggerEvent("tazo-recycle:Dumpsters:Search", { entity = entity }) end,
                 icon = "fas fa-dumpster",
                 label = Loc[Config.Lan].target["search_trash"],
             },
@@ -33,7 +33,7 @@ if Config.DumpsterDiving.Enable then if Config.Debug then print("^5Debug^7: ^2Lo
         lockInv(false)
     end
 
-    RegisterNetEvent('jim-recycle:Dumpsters:Search', function(data) local Ped = PlayerPedId()
+    RegisterNetEvent('tazo-recycle:Dumpsters:Search', function(data) local Ped = PlayerPedId()
         local searchSuccess = nil
         if not Searching then Searching = true else return end
         lockInv(true)

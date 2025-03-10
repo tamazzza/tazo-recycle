@@ -34,19 +34,19 @@ CreateThread(function()
 			local jobLoc = loc.JobLocations
 			Targets[nameEnter] =
 				exports['qb-target']:AddBoxZone(nameEnter, jobLoc.Enter.coords.xyz, jobLoc.Enter.w, jobLoc.Enter.d, { name=nameEnter, heading = jobLoc.Enter.coords.w, debugPoly=Config.Debug, minZ=jobLoc.Enter.coords.z-1, maxZ=jobLoc.Enter.coords.z+2 },
-					{ options = { { event = "jim-recycle:TeleWareHouse", icon = "fas fa-recycle", label = Loc[Config.Lan].target["enter"]..(Config.PayAtDoor and " ($"..Config.PayAtDoor..")" or ""), tele = jobLoc.Enter.tele, job = loc.Job, enter = true }, },
+					{ options = { { event = "tazo-recycle:TeleWareHouse", icon = "fas fa-recycle", label = Loc[Config.Lan].target["enter"]..(Config.PayAtDoor and " ($"..Config.PayAtDoor..")" or ""), tele = jobLoc.Enter.tele, job = loc.Job, enter = true }, },
 					distance = 1.5 })
 
 			local nameExit = "RecycleExit"..location
 			Targets[nameExit] =
 				exports['qb-target']:AddBoxZone(nameExit, jobLoc.Exit.coords.xyz, jobLoc.Exit.w, jobLoc.Exit.d, { name=nameExit, heading = jobLoc.Exit.coords.w, debugPoly=Config.Debug, minZ=jobLoc.Exit.coords.z-1, maxZ=jobLoc.Exit.coords.z+2, },
-					{ options = { { event = "jim-recycle:TeleWareHouse", icon = "fas fa-recycle", label = Loc[Config.Lan].target["exit"], tele = jobLoc.Exit.tele }, },
+					{ options = { { event = "tazo-recycle:TeleWareHouse", icon = "fas fa-recycle", label = Loc[Config.Lan].target["exit"], tele = jobLoc.Exit.tele }, },
 					distance = 1.5 })
 
 			local nameDuty = "RecycleDuty"..location
 			Targets[nameDuty] =
 				exports['qb-target']:AddBoxZone(nameDuty, jobLoc.Duty.coords.xyz, jobLoc.Duty.w, jobLoc.Duty.d, { name=nameDuty, heading = jobLoc.Duty.coords.w, debugPoly=Config.Debug, minZ=jobLoc.Duty.coords.z-0.5, maxZ=jobLoc.Duty.coords.z+0.5, },
-					{ options = { { event = "jim-recycle:dutytoggle", icon = "fas fa-hard-hat", label = Loc[Config.Lan].target["duty"], job = loc.Job, Trolly = jobLoc.Trolly }, },
+					{ options = { { event = "tazo-recycle:dutytoggle", icon = "fas fa-hard-hat", label = Loc[Config.Lan].target["duty"], job = loc.Job, Trolly = jobLoc.Trolly }, },
 					distance = 1.5 })
 
 			if jobLoc.Trade then
@@ -55,7 +55,7 @@ CreateThread(function()
 					Peds[nameTrade] = makePed(jobLoc.Trade[i].model, jobLoc.Trade[i].coords, true, false, jobLoc.Trade[i].scenario, nil)
 					Targets[nameTrade] =
 						exports['qb-target']:AddBoxZone(nameTrade, vec3(jobLoc.Trade[i].coords.x, jobLoc.Trade[i].coords.y, jobLoc.Trade[i].coords.z-1), jobLoc.Trade[i].w, jobLoc.Trade[i].d, { name=nameTrade, heading = jobLoc.Trade[i].coords.w, debugPoly=Config.Debug, minZ= jobLoc.Trade[i].coords.z-1, maxZ=jobLoc.Trade[i].coords.z+1 },
-							{ options = { { event = "jim-recycle:Trade:Menu", icon = "fas fa-box", label = Loc[Config.Lan].target["trade"], job = loc.Job, Ped = Peds[nameTrade] }, },
+							{ options = { { event = "tazo-recycle:Trade:Menu", icon = "fas fa-box", label = Loc[Config.Lan].target["trade"], job = loc.Job, Ped = Peds[nameTrade] }, },
 							distance = 1.5 })
 				end
 			end
@@ -69,7 +69,7 @@ CreateThread(function()
 		if loc.Blip.blipEnable then makeBlip({ coords = loc.coords, sprite = loc.Blip.sprite, col = loc.Blip.col, name = loc.Blip.name } ) end
 		Targets[nameSell] =
 			exports['qb-target']:AddBoxZone(nameSell, vec3(loc.coords.x, loc.coords.y, loc.coords.z-1), 1.0, 1.0, { name=nameSell, heading = loc.coords.w, debugPoly = Config.Debug, minZ = loc.coords.z-1, maxZ=loc.coords.z+1 },
-				{ options = { { event = "jim-recycle:Selling:Menu", icon = "fas fa-box", label = Loc[Config.Lan].target["sell"], Ped = Peds[nameSell], }, },
+				{ options = { { event = "tazo-recycle:Selling:Menu", icon = "fas fa-box", label = Loc[Config.Lan].target["sell"], Ped = Peds[nameSell], }, },
 				distance = 2.5 })
 	end
 	--Bottle Selling Third Eyes
@@ -79,7 +79,7 @@ CreateThread(function()
 		if loc.Blip.blipEnable then makeBlip({ coords = loc.coords, sprite = loc.Blip.sprite, col = loc.Blip.col, name = loc.Blip.name } ) end
 		Targets[nameBank] =
 			exports['qb-target']:AddBoxZone(nameBank, vec3(loc.coords.x, loc.coords.y, loc.coords.z-1), 1.0, 1.0, { name=nameBank, heading = loc.coords.w, debugPoly = Config.Debug, minZ = loc.coords.z-1, maxZ=loc.coords.z+1 },
-				{ options = { { event = "jim-recycle:Bottle:Menu", icon = "fas fa-certificate", label = Loc[Config.Lan].target["sell_bottles"], job = Config.JobRole, Ped = Peds[nameBank] }, },
+				{ options = { { event = "tazo-recycle:Bottle:Menu", icon = "fas fa-certificate", label = Loc[Config.Lan].target["sell_bottles"], job = Config.JobRole, Ped = Peds[nameBank] }, },
 				distance = 1.5 })
 	end
 end)
@@ -131,12 +131,12 @@ function PickRandomPackage(Trolly)
 	--Generate Target Location on the selected package
 	Targets["Package"] =
 		exports['qb-target']:AddTargetEntity(randPackage,
-			{ options = { { event = "jim-recycle:PickupPackage:Start", icon = 'fas fa-magnifying-glass', label = Loc[Config.Lan].target["search"], Trolly = Trolly} },
+			{ options = { { event = "tazo-recycle:PickupPackage:Start", icon = 'fas fa-magnifying-glass', label = Loc[Config.Lan].target["search"], Trolly = Trolly} },
 			distance = 2.5,	})
 end
 
 --Event to enter and exit warehouse
-RegisterNetEvent("jim-recycle:TeleWareHouse", function(data) local Ped = PlayerPedId()
+RegisterNetEvent("tazo-recycle:TeleWareHouse", function(data) local Ped = PlayerPedId()
 	if data.enter then
 		if Config.EnableOpeningHours then
 			local ClockTime = GetClockHours()
@@ -150,10 +150,10 @@ RegisterNetEvent("jim-recycle:TeleWareHouse", function(data) local Ped = PlayerP
 						if Config.Inv == "ox" then
 							if HasItem("money", Config.PayAtDoor) then cash = Config.PayAtDoor end
 						else
-							local p = promise.new()	Core.Functions.TriggerCallback("jim-recycle:GetCash", function(cb) p:resolve(cb) end)
+							local p = promise.new()	Core.Functions.TriggerCallback("tazo-recycle:GetCash", function(cb) p:resolve(cb) end)
 							cash = Citizen.Await(p)
 						end
-						if cash >= Config.PayAtDoor then TriggerServerEvent("jim-recycle:DoorCharge")
+						if cash >= Config.PayAtDoor then TriggerServerEvent("tazo-recycle:DoorCharge")
 						else triggerNotify(nil, Loc[Config.Lan].error["no_money"], "error") return end
 					end
 				end
@@ -174,21 +174,21 @@ RegisterNetEvent("jim-recycle:TeleWareHouse", function(data) local Ped = PlayerP
 		EndJob() -- Resets outlines + targets if needed
 		DoScreenFadeOut(500)
 		while not IsScreenFadedOut() do Wait(10) end
-		if onDuty then TriggerEvent('jim-recycle:dutytoggle') end
+		if onDuty then TriggerEvent('tazo-recycle:dutytoggle') end
 		SetEntityCoords(Ped, data.tele.xyz)
 		DoScreenFadeIn(500)
 	end
 end)
 
-RegisterNetEvent("jim-recycle:PickupPackage:Start", function(data) local Ped = PlayerPedId()
+RegisterNetEvent("tazo-recycle:PickupPackage:Start", function(data) local Ped = PlayerPedId()
 	TaskStartScenarioInPlace(Ped, "CODE_HUMAN_MEDIC_KNEEL", 0, true)
 	if progressBar({label = Loc[Config.Lan].progressbar["search"], time = 5000, cancel = true, icon = "fas fa-magnifying-glass"}) then
 		ClearPedTasksImmediately(Ped)
-		TriggerEvent("jim-recycle:PickupPackage:Hold", data)
+		TriggerEvent("tazo-recycle:PickupPackage:Hold", data)
 	end
 end)
 
-RegisterNetEvent("jim-recycle:PickupPackage:Hold", function(data) local Ped = PlayerPedId()
+RegisterNetEvent("tazo-recycle:PickupPackage:Hold", function(data) local Ped = PlayerPedId()
 	--Clear current target info
 	exports["qb-target"]:RemoveTargetEntity(randPackage, "Search")
 	SetEntityDrawOutline(randPackage, false) randPackage = nil
@@ -208,11 +208,11 @@ RegisterNetEvent("jim-recycle:PickupPackage:Hold", function(data) local Ped = Pl
 
 	Targets["DropOff"] =
 		exports['qb-target']:AddTargetEntity(TrollyProp,
-			{ options = { { event = "jim-recycle:PickupPackage:Finish", icon = 'fas fa-recycle', label = Loc[Config.Lan].target["drop_off"], Trolly = data.Trolly } },
+			{ options = { { event = "tazo-recycle:PickupPackage:Finish", icon = 'fas fa-recycle', label = Loc[Config.Lan].target["drop_off"], Trolly = data.Trolly } },
 			distance = 2.5,	})
 end)
 
-RegisterNetEvent("jim-recycle:PickupPackage:Finish", function(data) local Ped = PlayerPedId()
+RegisterNetEvent("tazo-recycle:PickupPackage:Finish", function(data) local Ped = PlayerPedId()
 	--Once this is triggered it can't be stopped, so remove the target and prop
 	if Targets["DropOff"] then exports["qb-target"]:RemoveTargetEntity(TrollyProp, Loc[Config.Lan].target["drop_off"]) Targets["DropOff"] = nil end
 	destroyProp(TrollyProp) SetEntityDrawOutline(TrollyProp, false) TrollyProp = nil
@@ -237,7 +237,7 @@ RegisterNetEvent("jim-recycle:PickupPackage:Finish", function(data) local Ped = 
 	PickRandomPackage(data.Trolly)
 end)
 
-RegisterNetEvent('jim-recycle:dutytoggle', function(data)
+RegisterNetEvent('tazo-recycle:dutytoggle', function(data)
 	if Config.JobRole then
 		if onDuty then EndJob() else PickRandomPackage(data.Trolly) end
 		TriggerServerEvent("QBCore:ToggleDuty")
@@ -249,7 +249,7 @@ RegisterNetEvent('jim-recycle:dutytoggle', function(data)
 end)
 
 local Selling = false
-RegisterNetEvent('jim-recycle:SellAnim', function(data) local Ped = PlayerPedId()
+RegisterNetEvent('tazo-recycle:SellAnim', function(data) local Ped = PlayerPedId()
 	if Selling then return else Selling = true end
 	lockInv(true)
 	for k, v in pairs(GetGamePool('CObject')) do
@@ -277,28 +277,28 @@ RegisterNetEvent('jim-recycle:SellAnim', function(data) local Ped = PlayerPedId(
 	destroyProp(bag) unloadModel(`prop_paper_bag_small`)
 	bag = nil
 	for k in pairs(Config.Prices) do
-		if k == data.item then TriggerServerEvent('jim-recycle:Selling:Mat', {item = data.item, Ped = data.Ped }) Selling = false lockInv(false) return end
+		if k == data.item then TriggerServerEvent('tazo-recycle:Selling:Mat', {item = data.item, Ped = data.Ped }) Selling = false lockInv(false) return end
 	end
-	TriggerServerEvent("jim-recycle:TradeItems", { item = data.item, amount = data.amount })
+	TriggerServerEvent("tazo-recycle:TradeItems", { item = data.item, amount = data.amount })
 	Selling = false
 	lockInv(false)
 end)
 
-RegisterNetEvent('jim-recycle:Selling:Menu', function(data)
+RegisterNetEvent('tazo-recycle:Selling:Menu', function(data)
 	if Selling then return end
 	local sellMenu = {}
 	if Config.Menu == "qb" then
 		sellMenu[#sellMenu+1] = { icon = "recyclablematerial", header = Loc[Config.Lan].menu["sell_mats"], txt = Loc[Config.Lan].menu["sell_mats_txt"], isMenuHeader = true }
-		sellMenu[#sellMenu+1] = { icon = "fas fa-circle-xmark", header = "", txt = Loc[Config.Lan].menu["close"], params = { event = "jim-recycle:CloseMenu" } }
+		sellMenu[#sellMenu+1] = { icon = "fas fa-circle-xmark", header = "", txt = Loc[Config.Lan].menu["close"], params = { event = "tazo-recycle:CloseMenu" } }
 	end
 	for item, price in pairsByKeys(Config.Prices) do
 		sellMenu[#sellMenu+1] = {
 			disabled = not HasItem(item, 1),
 			icon = "nui://"..Config.img..Core.Shared.Items[item].image,
 			header = Core.Shared.Items[item].label,	txt = Loc[Config.Lan].menu["sell_all"]..price..Loc[Config.Lan].menu["each"],
-			params = { event = "jim-recycle:SellAnim", args = { Ped = data.Ped, item = item } },
+			params = { event = "tazo-recycle:SellAnim", args = { Ped = data.Ped, item = item } },
 			title = Core.Shared.Items[item].label, description = Loc[Config.Lan].menu["sell_all"]..price..Loc[Config.Lan].menu["each"],
-			event = "jim-recycle:SellAnim", args = { Ped = data.Ped, item = item },
+			event = "tazo-recycle:SellAnim", args = { Ped = data.Ped, item = item },
 		}
 	end
 	if Config.Menu == "ox" then exports.ox_lib:registerContext({id = 'sellMenu', title = Loc[Config.Lan].menu["sell_mats"], position = 'top-right', options = sellMenu })	exports.ox_lib:showContext("sellMenu")
@@ -307,13 +307,13 @@ RegisterNetEvent('jim-recycle:Selling:Menu', function(data)
 end)
 
 --Recyclable Trader
-RegisterNetEvent('jim-recycle:Trade:Menu', function(data)
+RegisterNetEvent('tazo-recycle:Trade:Menu', function(data)
 	if Selling then return end
 	local tradeMenu = {}
 	local icon = "nui://"..Config.img..Core.Shared.Items["recyclablematerial"].image
 	if Config.Menu == "qb" then
 		tradeMenu[#tradeMenu+1] = { icon = icon, header = Loc[Config.Lan].menu["mats_trade"], isMenuHeader = true }
-		tradeMenu[#tradeMenu+1] = { icon = "fas fa-circle-xmark", header = "", txt = Loc[Config.Lan].menu["close"], params = { event = "jim-recycle:CloseMenu" } }
+		tradeMenu[#tradeMenu+1] = { icon = "fas fa-circle-xmark", header = "", txt = Loc[Config.Lan].menu["close"], params = { event = "tazo-recycle:CloseMenu" } }
 	end
 	local tradeTable = {}
 	for k, v in pairs(Config.RecycleAmounts) do
@@ -328,8 +328,8 @@ RegisterNetEvent('jim-recycle:Trade:Menu', function(data)
 			icon = icon,
 			header = v.amount.." "..Loc[Config.Lan].menu["trade"],
 			title = v.amount.." "..Loc[Config.Lan].menu["trade"],
-			params = { event = "jim-recycle:SellAnim", args = { item = "recyclablematerial", amount = v.amount, Ped = data.Ped } },
-			event = "jim-recycle:SellAnim", args = { item = "recyclablematerial", amount = v.amount, Ped = data.Ped }
+			params = { event = "tazo-recycle:SellAnim", args = { item = "recyclablematerial", amount = v.amount, Ped = data.Ped } },
+			event = "tazo-recycle:SellAnim", args = { item = "recyclablematerial", amount = v.amount, Ped = data.Ped }
 		}
 		Wait(0)
 	end
@@ -339,21 +339,21 @@ RegisterNetEvent('jim-recycle:Trade:Menu', function(data)
 end)
 
 --Recyclable Trader
-RegisterNetEvent('jim-recycle:Bottle:Menu', function(data)
+RegisterNetEvent('tazo-recycle:Bottle:Menu', function(data)
 	if Selling then return end
 	local tradeMenu = {}
 	if Config.Menu == "qb" then
 		tradeMenu[#tradeMenu+1] = { icon = "recyclablematerial", header = Loc[Config.Lan].menu["sell_mats"], txt = Loc[Config.Lan].menu["sell_mats_txt"], isMenuHeader = true }
-		tradeMenu[#tradeMenu+1] = { icon = "fas fa-circle-xmark", header = "", txt = Loc[Config.Lan].menu["close"], params = { event = "jim-recycle:CloseMenu" } }
+		tradeMenu[#tradeMenu+1] = { icon = "fas fa-circle-xmark", header = "", txt = Loc[Config.Lan].menu["close"], params = { event = "tazo-recycle:CloseMenu" } }
 	end
 	for _, item in pairsByKeys(Config.BottleBankTable) do
 		tradeMenu[#tradeMenu+1] = {
 			disabled = not HasItem(item, 1),
 			icon = "nui://"..Config.img..Core.Shared.Items[item].image,
 			header = Core.Shared.Items[item].label, txt = Loc[Config.Lan].menu["sell_all"]..Config.Prices[item]..Loc[Config.Lan].menu["each"],
-			params = { event = "jim-recycle:SellAnim", args = { item = item, Ped = data.Ped } },
+			params = { event = "tazo-recycle:SellAnim", args = { item = item, Ped = data.Ped } },
 			title = Core.Shared.Items[item].label, description = Loc[Config.Lan].menu["sell_all"]..Config.Prices[item]..Loc[Config.Lan].menu["each"],
-			event = "jim-recycle:SellAnim", args = { item = item, Ped = data.Ped },
+			event = "tazo-recycle:SellAnim", args = { item = item, Ped = data.Ped },
 		}
 	end
 	if Config.Menu == "ox" then exports.ox_lib:registerContext({id = 'tradeMenu', title = Loc[Config.Lan].menu["sell_mats"], position = 'top-right', options = tradeMenu })	exports.ox_lib:showContext("tradeMenu")

@@ -3,7 +3,7 @@ if Config.ScrapyardSearching.Enable then if Config.Debug then print("^5Debug^7: 
 	--Dumpster Third Eye
 	exports['qb-target']:AddTargetModel(Config.ScrapyardSearching.models, { options = {
         {
-            action = function(entity) TriggerEvent("jim-recycle:Scrap:Search", { entity = entity }) end,
+            action = function(entity) TriggerEvent("tazo-recycle:Scrap:Search", { entity = entity }) end,
             icon = "fas fa-dumpster",
             label = Loc[Config.Lan].target["search"],
         },
@@ -32,7 +32,7 @@ if Config.ScrapyardSearching.Enable then if Config.Debug then print("^5Debug^7: 
         lockInv(false)
     end
 
-    RegisterNetEvent('jim-recycle:Scrap:Search', function(data) local Ped = PlayerPedId()
+    RegisterNetEvent('tazo-recycle:Scrap:Search', function(data) local Ped = PlayerPedId()
         local searchSuccess = nil
         if not Searching then Searching = true else return end
         lockInv(true)
