@@ -1,4 +1,4 @@
-print("^2Tazo^7-^2Recycle ^7v^42^7.^47^7.^42 ^7- ^2Recycling Script by ^1Tazo^7")
+print("^2Tazo^7-^2Recycle ^7v^43^7.^40 ^7- ^2Recycling Script by ^1Tazo^7")
 
 Config = {
 	Debug = false, -- Toggle Debug Mode
@@ -33,7 +33,7 @@ Config = {
 	DumpsterDiving = {
 		Enable = true,
 		searched = { }, -- No Touch
-		skillcheck = "qb-skillbar", --"qb-lock", "ps-ui", "qb-skillbar", "ox_lib", nil
+		skillcheck = nil, --"qb-lock", "ps-ui", "qb-skillbar", "ox_lib", nil
 		models = { -- The mighty list of dumpters/trash cans
 			`prop_dumpster_01a`, `prop_dumpster_02a`, `prop_dumpster_02b`, `prop_dumpster_3a`, `prop_dumpster_4a`, `prop_dumpster_4b`,
 			`prop_bin_05a`, `prop_bin_06a`, `prop_bin_07a`, `prop_bin_07b`, `prop_bin_07c`, `prop_bin_07d`, `prop_bin_08a`, `prop_bin_08open`,
