@@ -17,6 +17,11 @@ Config = {
 		RecycleCenter = true,
 	},
 
+	boxColors = {
+		load = { 255, 113, 0, 0.8 },
+		unLoad = { 0, 255, 146, 0.8 } -- use only RGBA for example: 19, 197, 0, 0.8
+	},
+
 	ScrapyardSearching = {
 		Enable = true,
 		searched = { }, -- No Touch

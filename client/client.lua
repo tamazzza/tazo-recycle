@@ -126,7 +126,7 @@ function PickRandomPackage(Trolly)
 	--Pick random prop to use
 	randPackage = searchProps[math.random(1, #searchProps)]
 	SetEntityDrawOutline(randPackage, true)
-	SetEntityDrawOutlineColor(0, 255, 0, 1.0)
+	SetEntityDrawOutlineColor(table.unpack(Config.boxColors.load))
 	SetEntityDrawOutlineShader(1)
 	--Generate Target Location on the selected package
 	Targets["Package"] =
@@ -203,7 +203,7 @@ RegisterNetEvent("tazo-recycle:PickupPackage:Hold", function(data) local Ped = P
 
 	--Create target for drop off location
 	SetEntityDrawOutline(TrollyProp, true)
-	SetEntityDrawOutlineColor(150, 1, 1, 1.0)
+	SetEntityDrawOutlineColor(table.unpack(Config.boxColors.unLoad))
 	SetEntityDrawOutlineShader(1)
 
 	Targets["DropOff"] =
